@@ -97,9 +97,9 @@ public class TextView_AutoLinkActivity extends Activity {
 }
  ```
  
- 這樣就完成了，接下來說方法二，比方法一更簡單許多！
+這樣就完成了，接下來說方法二，比方法一更簡單許多！
  
- ## 方法二
+## 方法二
  
 方法二非常簡單，只需要在建立TextView的時候多加上一行指令就好了，完全不會使用到Java那邊
 ```xml
