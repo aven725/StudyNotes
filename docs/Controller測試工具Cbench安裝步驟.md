@@ -1,5 +1,4 @@
 # Controller測試工具Cbench安裝步驟
------
 * 下載依賴套件
 
         $ sudo apt-get install autoconf automake libtool libsnmp-dev libpcap-dev
