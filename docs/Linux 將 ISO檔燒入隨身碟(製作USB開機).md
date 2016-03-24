@@ -39,7 +39,8 @@ $ sudo umount /dev/sdd1
 ```sh
 $ sudo mkfs.vfat /dev/sdd1
 ```
-mkfs 支援的格式如下圖
+mkfs 支援的格式如下圖 
+
 ![image](http://aven725.github.io/image/Linux_USB/image001.png)
 #### 製作USB開機光碟
 ## 
