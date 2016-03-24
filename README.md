@@ -13,4 +13,5 @@ Linux debian 3.16.0-4-amd64 #1 SMP Debian 3.16.7-ckt20-1+deb8u2 (2016-01-02) x86
 * [Controller測試工具Cbench安裝步驟](docs/Controller測試工具Cbench安裝步驟.md) 
 
 ## Android
-* [Android返回鍵、離開確認訊息](docs/Android返回鍵確認訊息.md)  
+* [Android返回鍵、離開確認訊息](docs/Android返回鍵確認訊息.md)
+* [Android TextView 自動判斷 連結網址、電話 (AutoLink)](docs/Android TextView 自動判斷 連結網址、電話 (AutoLink).md)  
