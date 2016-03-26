@@ -5,7 +5,7 @@
 
 先來看一下原本的網卡設定 
 
-    ifconfig
+    $ ifconfig
 
 大概會長的像下面這張圖，只有一張網路卡的情況下。 
 
@@ -13,33 +13,33 @@
 
 因為我們要透過ovs的bridge來實現KVM連接外部網路的方法，所以首先先創出ovs的bridge
 ```sh
-sudo ovs-vsctl add-br brLAN
-sudo ovs-vsctl add-br brWAN
+$ sudo ovs-vsctl add-br brLAN
+$ sudo ovs-vsctl add-br brWAN
 ```
 首先我們創造出了兩個bridge，分別是brLAN、brWAN，那這邊我們要將brLAN用來跟內部虛擬機做溝通，brWAN則是連接外部網路用的。 
 
 那現在這個brWAN是沒有功能的，我們必須把eth0的IP給他，並且把eth0接到brWAN上面的port，這樣才可以透過brWAN連接外部網路。
 ```sh
-sudo ovs-vsctl add-port brWAN eth0
-sudo ifconfig eth0 0
-sudo ifconfig brWAN 140.120.X.X netmask 255.255.255.192
-sudo route add default gw 140.120.X.X brWAN
+$ sudo ovs-vsctl add-port brWAN eth0
+$ sudo ifconfig eth0 0
+$ sudo ifconfig brWAN 140.120.X.X netmask 255.255.255.192
+$ sudo route add default gw 140.120.X.X brWAN
 ```
 做到這邊我們先看一下現在的網路卡設定變成什麼樣子
 
-    ifconfig
+    $ ifconfig
 
 ![image](http://aven725.github.io/image/KVM/Selection_002.png) 
 
 在來設定brLAN，brLAN就是虛擬機的gateway，所以設定完IP要記得。
 
-    sudo ifconfig brLAN 192.168.100.254 netmask 255.255.255.0
+    $ sudo ifconfig brLAN 192.168.100.254 netmask 255.255.255.0
     
 那因為我們要跟虛擬機連接，所以要創一個虛擬的網卡，給虛擬機跟brLAN連接，也就是做類是上面eth0跟brWAN的動作，只是變成要創一個虛擬網卡出來。
 ```sh
-sudo tunctl -u aven -t tapLAN
-sudo ifconfig tapLAN up
-sudo ovs-vsctl add-port brLAN tapLAN
+$ sudo tunctl -u aven -t tapLAN
+$ sudo ifconfig tapLAN up
+$ sudo ovs-vsctl add-port brLAN tapLAN
 ```
 ![image](http://aven725.github.io/image/KVM/Selection_004.png) 
 
@@ -55,7 +55,7 @@ sudo kvm -m 1024M \
 
 開機之後要設定interfaces，記得要用root權限。
 
-    nano /etc/network/interfaces
+    $ nano /etc/network/interfaces
 
 將內容改成
 ```sh
@@ -69,26 +69,28 @@ iface eth0 inet static
 
 改完之後記得重啟網路服務，或是重新開機。
 ```sh
-service networking restart
+$ sudo service networking restart
 或
-init 6
+$ init 6
 ```
 重啟後我們看一下目前的route狀態
 
-    route -n
+    $ route -n
 ![image](http://aven725.github.io/image/KVM/Selection_010.png) 
 
 這樣應該就可以ping到主機摟
 
-    ping 192.168.100.254
+    $ ping 192.168.100.254
+	
 ![image](http://aven725.github.io/image/KVM/Selection_007.png) 
 
-但是應該無法連出去(ping google DNS)
+但是應該無法連出去(ping google DNS) 
+
 ![image](http://aven725.github.io/image/KVM/Selection_008.png) 
 
 首先改一下DNS
 ```sh
-sudo nano /etc/resolv.conf
+$ sudo nano /etc/resolv.conf
 ```
 加入
     
@@ -96,12 +98,12 @@ sudo nano /etc/resolv.conf
 
 不能出去的原因是因為我們的IP是private的IP，必須透過NAT的技術改成public才行連到外部網路，所以在主機的iptable需要加入新的規則。
 
-    sudo iptables -t nat -A POSTROUTING -s 192.168.100.0/24 -o brWAN -j MASQUERADE
+    $ sudo iptables -t nat -A POSTROUTING -s 192.168.100.0/24 -o brWAN -j MASQUERADE
 上面大概是說，新增一個NAT的規則，來源是192.168.100.0/24這個網段，我的出口為brWAN並且做偽裝的動作。
 
 這時候我們回到KVM應該就可以ping的到外部網路摟。
 
-    ping 8.8.8.8
+    $ ping 8.8.8.8
     
 ![image](http://aven725.github.io/image/KVM/Selection_009.png) 
 
@@ -109,7 +111,7 @@ sudo nano /etc/resolv.conf
 
 很簡單，一樣下一個NAT的規則就可以
 ```sh
-sudo iptables -t nat -A PREROUTING -i brWAN -p tcp --dport 80 \
+$ sudo iptables -t nat -A PREROUTING -i brWAN -p tcp --dport 80 \
      -j DNAT --to-destination 192.168.100.2:80
 ```
 
@@ -120,27 +122,27 @@ sudo iptables -t nat -A PREROUTING -i brWAN -p tcp --dport 80 \
 
 最後我們看一下HOST上面的設定
 
-    route -n
+    $ route -n
     
 ![image](http://aven725.github.io/image/KVM/Selection_011.png) 
 
-    sudo iptables -t nat -L -n
+    $ sudo iptables -t nat -L -n
 
 ![image](http://aven725.github.io/image/KVM/Selection_012.png)  
 
-    sudo iptables-save
+    $ sudo iptables-save
 
 ![image](http://aven725.github.io/image/KVM/Selection_013.png) 
 
 結束後我們必須把設定還原
 ```sh
-sudo iptables -F -t nat
-sudo ovs-vsctl del-br brWAN
-sudo ovs-vsctl del-br brLAN
-sudo ifconfig tapLAN down
-sudo tunctl -d tapLAN
-sudo ifconfig eth0 140.120.X.X/X
-sudo route add default gw 140.120.X.X eth0
+$ sudo iptables -F -t nat
+$ sudo ovs-vsctl del-br brWAN
+$ sudo ovs-vsctl del-br brLAN
+$ sudo ifconfig tapLAN down
+$ sudo tunctl -d tapLAN
+$ sudo ifconfig eth0 140.120.X.X/X
+$ sudo route add default gw 140.120.X.X eth0
 ```
 
 這樣就完成拉！
