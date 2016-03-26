@@ -73,3 +73,8 @@ KEYCODE_BACK 其實也可以改成 HOME 這樣的話也可以攔截HOME鍵了，
 
 範例下載(Mega空間)：
 https://mega.co.nz/#!dQBDwaQB!yIWMwlKTWvPmsQgWTVhFpmuBQ_PxyGqsfOluyGpSYyM
+
+-------
+* [回目錄](../README.md)
+
+-------

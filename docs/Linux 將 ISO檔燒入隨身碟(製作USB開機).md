@@ -63,5 +63,10 @@ $ sudo dd if=~/debian-8.2.0-amd64-netinst.iso of=/dev/sdd
 ```sh
 $ sudo dd if=~/debian-8.2.0-amd64-netinst.iso of=/dev/sdd1
 ```
-## 參考連結
+# Reference
 * [使用 dd 指令製作 Live USB](https://chakra-zh.blogspot.tw/2012/04/dd-live-usb.html)
+
+-------
+* [回目錄](../README.md)
+
+-------
