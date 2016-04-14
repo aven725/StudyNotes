@@ -101,6 +101,10 @@ $ sudo nano /etc/resolv.conf
     $ sudo iptables -t nat -A POSTROUTING -s 192.168.100.0/24 -o brWAN -j MASQUERADE
 上面大概是說，新增一個NAT的規則，來源是192.168.100.0/24這個網段，我的出口為brWAN並且做偽裝的動作 
 
+加入後記得開啟 Linux 的 router 功能
+
+    sudo sysctl net.ipv4.ip_forward=1
+
 這時候我們回到KVM應該就可以ping的到外部網路摟 
 
     $ ping 8.8.8.8
