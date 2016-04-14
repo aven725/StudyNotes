@@ -103,7 +103,7 @@ $ sudo nano /etc/resolv.conf
 
 加入後記得開啟 Linux 的 router 功能
 
-    sudo sysctl net.ipv4.ip_forward=1
+    $ sudo sysctl net.ipv4.ip_forward=1
 
 這時候我們回到KVM應該就可以ping的到外部網路摟 
 
@@ -148,6 +148,11 @@ $ sudo tunctl -d tapLAN
 $ sudo ifconfig eth0 140.120.X.X/X
 $ sudo route add default gw 140.120.X.X eth0
 ```
+
+刪除NAT設定
+
+    $ sudo iptables -t nat -F
+
 
 這樣就完成拉！
 
