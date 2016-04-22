@@ -8,6 +8,7 @@ Linux debian 3.16.0-4-amd64 #1 SMP Debian 3.16.7-ckt20-1+deb8u2 (2016-01-02) x86
 ```
 ## Linux
 * [Linux 將 ISO檔燒入隨身碟(製作USB開機)](docs/Linux 將 ISO檔燒入隨身碟(製作USB開機).md)
+* [Linux編譯Synergy(1.7.6-stable)](docs/Linux編譯Synergy(1.7.6-stable).md)
 
 ## Virtualization 
 * [KVM透過OpenVSwitch連接網路](docs/KVM透過OpenVSwitch連接網路.md)
