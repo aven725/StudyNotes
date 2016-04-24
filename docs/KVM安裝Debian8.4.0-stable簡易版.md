@@ -83,12 +83,14 @@ GRUB boot這一定要Yes，否則會不能開機
 按下Continue完成安裝，會自動重開機
 ![image](http://aven725.github.io/image/InstallationDebianKVM/debian028.jpg)
 
-安裝完後登入試試看
+安裝完後登入試試看 
+
 ![image](http://aven725.github.io/image/InstallationDebianKVM/debian029.jpg)
 
 ![image](http://aven725.github.io/image/InstallationDebianKVM/debian030.jpg)
 
-查看版本
+查看版本 
+
 ![image](http://aven725.github.io/image/InstallationDebianKVM/debian031.jpg)
 
 
