@@ -1,6 +1,8 @@
 # linux編譯Synergy(1.7.6-stable)
  
 ```
+sudo aptitude update
+sudo aptitude install python-setuptools git
 git clone https://github.com/symless/synergy.git
 cd synergy
 git checkout -b v1.7.6-stable
