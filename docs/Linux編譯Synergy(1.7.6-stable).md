@@ -11,11 +11,10 @@ sudo apt-get install build-essential cmake libavahi-compat-libdnssd-dev libcurl4
 ./hm.sh build [-d]
 ```
 
-Building installers
+Building and installers
 
 	./hm.sh package deb
 
-or 
 
 ```
 cd bin
