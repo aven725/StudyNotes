@@ -120,6 +120,15 @@ For more examples and ideas, visit:
  https://docs.docker.com/engine/userguide/
 ```
 
+## 免ROOT權限
+
+```
+sudo groupadd docker
+sudo gpasswd -a ${USER} docker
+sudo service docker restart
+sudo reboot
+```
+
 # Reference
 * [Install Docker Engine on Linux Debian](https://docs.docker.com/engine/installation/linux/debian/)
 
