@@ -6,10 +6,10 @@
 	lsb_release -a
 
 >No LSB modules are available.
-Distributor ID:	Debian
-Description:	Debian GNU/Linux 8.6 (jessie)
-Release:	8.6
-Codename:	jessie
+>Distributor ID:	Debian
+>Description:	Debian GNU/Linux 8.6 (jessie)
+>Release:	8.6
+>Codename:	jessie
 
 	uname -a
 	
