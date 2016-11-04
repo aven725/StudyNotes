@@ -19,7 +19,7 @@ Linux debian 3.16.0-4-amd64 #1 SMP Debian 3.16.7-ckt20-1+deb8u2 (2016-01-02) x86
 * [Controller測試工具Cbench安裝步驟](docs/Controller測試工具Cbench安裝步驟.md) 
 * [Linux 編譯 Open vSwitch(2.5.0)](docs/Linux 編譯 Open vSwitch(2.5.0).md)
 * [Asus RT-N66U刷OpenWrt & Openvswitch](docs/Asus RT-N66U刷OpenWrt & Openvswitch.md)
-* [RT-N66U(rescue mode)](docs/RT-N66U(rescue mode).md)
+* [RT-N66U_rescue_mode](docs/RT-N66U_rescue_mode.md)
 
 ## WEB
 * [XAMPP關閉目錄列表(Indexes)](docs/XAMPP關閉目錄列表(Indexes).md) 

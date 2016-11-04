@@ -85,7 +85,7 @@ make -j
 選擇編好的.trx (這裡是 openwrt-brcm47xx-mips74k-asus-rt-n66u-squashfs.trx) 然後上傳
 ![image](http://aven725.github.io/image/OpenWrt/13.png)
 
-## 會說版本錯誤 !!  只能進救援模式 強制刷 ( 看RT-N66U(rescue mode) ) 
+## 會說版本錯誤 !!  只能進救援模式 強制刷 ( [RT-N66U_rescue_mode](RT-N66U_rescue_mode.md) ) 
 
 其實不編譯 直接下載別人編好的 TRX，然後直接刷就OK
 ( https://wiki.openwrt.org/toh/start )
