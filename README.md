@@ -27,5 +27,5 @@ Linux debian 3.16.0-4-amd64 #1 SMP Debian 3.16.7-ckt20-1+deb8u2 (2016-01-02) x86
 
 ## Android
 * [Android返回鍵、離開確認訊息](docs/Android-返回鍵確認訊息.md)
-* [Android-TextView自動判斷 連結網址、電話 (AutoLink)](docs/Android-TextView自動判斷 連結網址、電話 (AutoLink).md)
+* [Android-TextView自動判斷連結網址、電話 (AutoLink)](docs/Android-TextView自動判斷連結網址、電話 (AutoLink).md)
 * [Android-ScrollView內套用ListView](docs/Android-ScrollView內套用ListView.md)
